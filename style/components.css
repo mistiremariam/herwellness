@@ -70,25 +70,141 @@
 /* ------------------------------
    Journal
    ------------------------------ */
-.journal {
-  margin-top: 50px;
+/* journal.css */
+
+/* General journal container styling */
+body {
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, #f9d6e5, #fff0f6);
+  margin: 0;
+  padding: 0;
+  color: #333;
 }
 
-.journal textarea {
-  width: 100%;
-  height: 200px;
+.container {
+  max-width: 700px;
+  margin: 50px auto;
+  padding: 30px;
+  background: #fff;
+  border-radius: 25px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+/* Heading */
+h1 {
+  text-align: center;
+  font-size: 2.5rem;
+  color: #ff69b4;
+  margin-bottom: 20px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+/* Form styling */
+#journal-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+#journal-input {
   padding: 15px;
-  border: 2px solid var(--color-accent);
-  border-radius: var(--radius-large);
-  font-size: 1rem;
-  resize: none;
+  font-size: 1.1rem;
+  border-radius: 15px;
+  border: 2px solid #ffb6c1;
   outline: none;
-  transition: border-color 0.3s ease;
+  transition: border-color 0.3s, box-shadow 0.3s;
 }
 
-.journal textarea:focus {
-  border-color: var(--color-primary);
+#journal-input:focus {
+  border-color: #ff69b4;
+  box-shadow: 0 0 10px rgba(255,105,180,0.3);
 }
+
+#journal-form button {
+  padding: 15px;
+  font-size: 1.2rem;
+  border: none;
+  border-radius: 15px;
+  background: #ff69b4;
+  color: #fff;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
+}
+
+#journal-form button:hover {
+  background: #ff1493;
+  transform: scale(1.05);
+}
+
+/* Journal entries list */
+#journal-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.journal-entry {
+  background: #fff0f6;
+  border-left: 6px solid #ff69b4;
+  padding: 20px;
+  border-radius: 15px;
+  position: relative;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.journal-entry:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(255,105,180,0.2);
+}
+
+/* Entry date */
+.entry-date {
+  font-size: 0.9rem;
+  color: #ff69b4;
+  margin-bottom: 8px;
+}
+
+/* Entry text */
+.entry-text {
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+/* Delete button */
+.delete-entry {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: transparent;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  color: #ff1493;
+  transition: transform 0.2s;
+}
+
+.delete-entry:hover {
+  transform: scale(1.2);
+}
+
+/* Empty message styling */
+.empty-msg {
+  text-align: center;
+  font-size: 1.2rem;
+  color: #ff69b4;
+  font-style: italic;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .container {
+    margin: 20px;
+    padding: 20px;
+  }
+}
+
 
 /* ------------------------------
    Exercise Tracker
