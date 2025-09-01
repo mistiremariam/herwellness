@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Wellness Chatbot | HerWellness AI</title>
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/components.css">
+  <style>
+    /* Chatbot Page Styling */
+    .chatbot-container {
+      max-width: 700px;
+      margin: 3rem auto;
+      background: var(--bg-color);
+      border-radius: 20px;
+      box-shadow: 0px 8px 30px rgba(255, 182, 193, 0.3);
+      display: flex;
+      flex-direction: column;
+      height: 80vh;
+      overflow: hidden;
+    }
+
+    .chat-header {
+      background: var(--accent-pink);
+      padding: 1rem;
+      text-align: center;
+      color: white;
+      font-size: 1.3rem;
+      font-weight: bold;
+      letter-spacing: 1px;
+    }
+
+    .chat-messages {
+      flex: 1;
+      padding: 1rem;
+      overflow-y: auto;
+      background: linear-gradient(180deg, #fff9fb, #fdf2f8);
+    }
+
+    .message {
+      max-width: 70%;
+      margin-bottom: 1rem;
+      padding: 0.8rem 1rem;
+      border-radius: 20px;
+      font-size: 0.95rem;
+      line-height: 1.4;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .message.user {
+      background: var(--accent-pink);
+      color: white;
+      margin-left: auto;
+      border-bottom-right-radius: 5px;
+    }
+
+    .message.bot {
+      background: #f5f5f5;
+      color: var(--text-dark);
+      margin-right: auto;
+      border-bottom-left-radius: 5px;
+    }
+
+    .chat-input {
+      display: flex;
+      padding: 0.8rem;
+      background: #fff;
+      border-top: 2px solid #fdd;
+    }
+
+    .chat-input input {
+      flex: 1;
+      padding: 0.8rem;
+      border: none;
+      border-radius: 15px;
+      background: #fdf2f8;
+      font-size: 1rem;
+      outline: none;
+    }
+
+    .chat-input button {
+      margin-left: 0.6rem;
+      padding: 0.8rem 1.2rem;
+      border: none;
+      border-radius: 15px;
+      background: var(--accent-pink);
+      color: white;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .chat-input button:hover {
+      background: #e75480;
+    }
+
+    @keyframes fadeIn {
+      from {opacity: 0; transform: translateY(10px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+  </style>
+</head>
+<body>
+  <header class="navbar">
+    <div class="logo">🌸 HerWellness AI</div>
+    <nav class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="journal.html">Journal</a>
+      <a href="exercise.html">Exercise</a>
+      <a href="nutrition.html">Nutrition</a>
+      <a href="chatbot.html" class="active">AI Companion</a>
+    </nav>
+  </header>
+
+  <main class="chatbot-container">
+    <div class="chat-header">💬 Wellness Chatbot</div>
+    <div class="chat-messages" id="chatMessages">
+      <div class="message bot">Hi beautiful 🌸! I’m your AI wellness companion. How are you feeling today?</div>
+    </div>
+
+    <form class="chat-input" id="chatForm">
+      <input type="text" id="userInput" placeholder="Type your message..." required>
+      <button type="submit">Send</button>
+    </form>
+  </main>
+
+  <script>
+    const chatForm = document.getElementById("chatForm");
+    const chatMessages = document.getElementById("chatMessages");
+    const userInput = document.getElementById("userInput");
+
+    chatForm.addEventListener("submit", function(e) {
+      e.preventDefault();
+      const text = userInput.value.trim();
+      if (text === "") return;
+
+      // User message
+      const userMsg = document.createElement("div");
+      userMsg.classList.add("message", "user");
+      userMsg.textContent = text;
+      chatMessages.appendChild(userMsg);
+
+      // Fake bot response
+      setTimeout(() => {
+        const botMsg = document.createElement("div");
+        botMsg.classList.add("message", "bot");
+        botMsg.textContent = getBotResponse(text);
+        chatMessages.appendChild(botMsg);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+      }, 600);
+
+      userInput.value = "";
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+    });
+
+    function getBotResponse(input) {
+      input = input.toLowerCase();
+      if (input.includes("sad") || input.includes("tired")) {
+        return "I hear you ❤️. Maybe some deep breathing or journaling could help. Want me to suggest a quick exercise?";
+      } else if (input.includes("nutrition") || input.includes("food")) {
+        return "🍎 Eating balanced meals is important! Would you like me to give you a healthy recipe idea?";
+      } else if (input.includes("exercise")) {
+        return "💪 Let’s get moving! I recommend a quick 10-minute stretch to refresh your body.";
+      } else {
+        return "🌷 I’m here for you. Tell me more!";
+      }
+    }
+  </script>
+</body>
+</html>
