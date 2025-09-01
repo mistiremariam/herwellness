@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Period Tracker | HerWellness AI</title>
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/components.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <!-- Navbar -->
+  <div id="navbar-container"></div>
+
+  <main class="container">
+    <section class="card tracker-card">
+      <h2 class="section-title">🌸 Period Tracker</h2>
+      <p class="muted">Track your cycle, predict your next period, and manage symptoms with ease.</p>
+
+      <!-- Calendar -->
+      <div class="calendar-container">
+        <table class="calendar">
+          <thead>
+            <tr>
+              <th>Sun</th>
+              <th>Mon</th>
+              <th>Tue</th>
+              <th>Wed</th>
+              <th>Thu</th>
+              <th>Fri</th>
+              <th>Sat</th>
+            </tr>
+          </thead>
+          <tbody id="calendar-body">
+            <!-- Calendar days will be dynamically inserted here -->
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Cycle Info -->
+      <div class="cycle-info">
+        <h3>Cycle Overview</h3>
+        <ul>
+          <li><span class="highlight">Next Period:</span> Sept 24, 2025</li>
+          <li><span class="highlight">Fertile Window:</span> Sept 15 - Sept 21</li>
+          <li><span class="highlight">Cycle Length:</span> 28 days</li>
+        </ul>
+      </div>
+
+      <!-- Symptoms & Notes -->
+      <div class="symptom-tracker">
+        <h3>Log Symptoms</h3>
+        <form>
+          <label for="symptom">How are you feeling today?</label>
+          <select id="symptom">
+            <option value="cramps">Cramps</option>
+            <option value="headache">Headache</option>
+            <option value="bloating">Bloating</option>
+            <option value="mood">Mood Swings</option>
+            <option value="energy">Low Energy</option>
+          </select>
+          <label for="note">Notes</label>
+          <textarea id="note" rows="3" placeholder="Write about your day..."></textarea>
+          <button type="submit" class="btn-primary">Save Log</button>
+        </form>
+      </div>
+
+      <!-- Chart -->
+      <div class="chart-container">
+        <h3>Cycle History</h3>
+        <canvas id="cycleChart"></canvas>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    // Navbar loader
+    fetch("navbar.html")
+      .then(res => res.text())
+      .then(data => document.getElementById("navbar-container").innerHTML = data);
+
+    // Simple cycle chart
+    const ctx = document.getElementById('cycleChart').getContext('2d');
+    new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: ['July', 'Aug', 'Sept'],
+        datasets: [{
+          label: 'Cycle Length (days)',
+          data: [27, 29, 28],
+          borderColor: '#ff5ca2',
+          backgroundColor: 'rgba(255,92,162,0.2)',
+          borderWidth: 3,
+          tension: 0.3,
+          pointStyle: 'circle',
+          pointRadius: 6,
+          pointBackgroundColor: '#ff5ca2'
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { display: false }
+        },
+        scales: {
+          y: { beginAtZero: false }
+        }
+      }
+    });
+
+    // Simple calendar filler
+    const calendarBody = document.getElementById("calendar-body");
+    for (let i = 0; i < 5; i++) {
+      let row = document.createElement("tr");
+      for (let j = 0; j < 7; j++) {
+        let cell = document.createElement("td");
+        cell.innerText = i * 7 + j + 1 <= 30 ? i * 7 + j + 1 : "";
+        if (cell.innerText == 24) {
+          cell.classList.add("period-day");
+        }
+        row.appendChild(cell);
+      }
+      calendarBody.appendChild(row);
+    }
+  </script>
+</body>
+</html>
