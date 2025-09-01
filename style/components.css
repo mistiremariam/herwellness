@@ -452,3 +452,82 @@ body {
   transform: scale(1.05);
   background: linear-gradient(135deg, #ff85b8, #c07ad1);
 }
+/* dashboard.css */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
+  background: #fff0f5;
+  color: #333;
+}
+
+.dashboard-container {
+  padding: 40px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.dashboard-header {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.dashboard-header h1 {
+  font-size: 2.5rem;
+  color: #ff1493;
+}
+
+.dashboard-header p {
+  font-size: 1.1rem;
+  color: #ff69b4;
+  margin-top: 10px;
+}
+
+/* Cards container */
+.dashboard-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+}
+
+/* Card style */
+.card {
+  background: #fff;
+  border-radius: 20px;
+  padding: 25px;
+  text-align: center;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+}
+
+.card h2 {
+  color: #ff1493;
+  margin-bottom: 15px;
+  font-size: 1.5rem;
+}
+
+.card p {
+  color: #ff69b4;
+  margin-bottom: 20px;
+}
+
+.card-btn {
+  display: inline-block;
+  padding: 10px 25px;
+  border-radius: 50px;
+  text-decoration: none;
+  color: #fff;
+  background: linear-gradient(90deg, #ff9ec4, #ff69b4);
+  font-weight: 600;
+  transition: background 0.3s, transform 0.2s;
+}
+
+.card-btn:hover {
+  background: linear-gradient(90deg, #ff69b4, #ff1493);
+  transform: scale(1.05);
+}

@@ -3,61 +3,78 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>HerWellness AI | Dashboard</title>
-  <link rel="stylesheet" href="main.css">
-  <link rel="stylesheet" href="components.css">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-  <script src="https://kit.fontawesome.com/a2d9d5a64b.js" crossorigin="anonymous"></script>
+  <title>HerWellness Dashboard</title>
+  <link rel="stylesheet" href="navbar.css">
+  <link rel="stylesheet" href="dashboard.css">
+  <script src="main.js"></script>
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-  <!-- Sidebar Navigation -->
-  <aside class="sidebar">
-    <div class="brand">
-      <h2>🌸 HerWellness AI</h2>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="logo">HerWellness</div>
+    <ul class="nav-links">
+      <li><a href="dashboard.html">Dashboard</a></li>
+      <li><a href="exercise.html">Exercise</a></li>
+      <li><a href="journal.html">Journal</a></li>
+      <li><a href="nutrition.html">Nutrition</a></li>
+      <li><a href="chatbot.html">Health AI</a></li>
+      <li><a href="period-tracker.html">Period Tracker</a></li>
+    </ul>
+    <div class="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
     </div>
-    <nav>
-      <ul>
-        <li><a href="dashboard.html" class="active"><i class="fas fa-home"></i> Dashboard</a></li>
-        <li><a href="journal.html"><i class="fas fa-book"></i> Journal</a></li>
-        <li><a href="exercise.html"><i class="fas fa-dumbbell"></i> Exercise</a></li>
-        <li><a href="nutrition.html"><i class="fas fa-apple-alt"></i> Nutrition</a></li>
-        <li><a href="chatbot.html"><i class="fas fa-robot"></i> AI Companion</a></li>
-      </ul>
-    </nav>
-  </aside>
+  </nav>
 
   <!-- Main Dashboard Content -->
-  <main class="dashboard">
+  <main class="dashboard-container">
     <header class="dashboard-header">
-      <h1>Welcome Back, Queen 👑</h1>
-      <p>Your personalized wellness journey starts here.</p>
+      <h1>Welcome Back, Beautiful!</h1>
+      <p>Track your wellness, stay healthy, and make your life vibrant 💖</p>
     </header>
 
     <section class="dashboard-cards">
-      <div class="card pink-card">
-        <h3><i class="fas fa-book"></i> Journaling</h3>
-        <p>Reflect, write, and grow with daily journaling prompts.</p>
-        <a href="journal.html" class="btn">Start Journaling</a>
+      <!-- Exercise Card -->
+      <div class="card exercise-card">
+        <h2>Exercise</h2>
+        <p>Plan your workouts and stay fit</p>
+        <a href="exercise.html" class="card-btn">Go</a>
       </div>
 
-      <div class="card purple-card">
-        <h3><i class="fas fa-dumbbell"></i> Exercises</h3>
-        <p>Stay fit with workouts tailored for strength & balance.</p>
-        <a href="exercise.html" class="btn">View Workouts</a>
+      <!-- Journal Card -->
+      <div class="card journal-card">
+        <h2>Journal</h2>
+        <p>Reflect on your day and emotions</p>
+        <a href="journal.html" class="card-btn">Go</a>
       </div>
 
-      <div class="card green-card">
-        <h3><i class="fas fa-apple-alt"></i> Nutrition</h3>
-        <p>Plan meals and track your nutrition effectively.</p>
-        <a href="nutrition.html" class="btn">Meal Plans</a>
+      <!-- Nutrition Card -->
+      <div class="card nutrition-card">
+        <h2>Nutrition</h2>
+        <p>Plan your meals and stay healthy</p>
+        <a href="nutrition.html" class="card-btn">Go</a>
       </div>
 
-      <div class="card blue-card">
-        <h3><i class="fas fa-robot"></i> AI Companion</h3>
-        <p>Chat with your AI wellness buddy for guidance & support.</p>
-        <a href="chatbot.html" class="btn">Chat Now</a>
+      <!-- ChatBot Card -->
+      <div class="card chatbot-card">
+        <h2>Health AI</h2>
+        <p>Your personal health companion</p>
+        <a href="chatbot.html" class="card-btn">Go</a>
+      </div>
+
+      <!-- Period Tracker Card -->
+      <div class="card period-card">
+        <h2>Period Tracker</h2>
+        <p>Track your cycle and wellness</p>
+        <a href="period-tracker.html" class="card-btn">Go</a>
       </div>
     </section>
   </main>
+
+  <script src="navbar.js"></script>
 </body>
 </html>
