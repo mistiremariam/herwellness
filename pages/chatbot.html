@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>HerWellness | Chatbot</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+<link href="../styles/main.css" rel="stylesheet">
+</head>
+<body>
+<header class="main-header">
+  <nav class="navbar">
+    <div class="logo">
+      <img src="../assets/Copilot_20250902_104841.png" alt="HerWellness Logo">
+      <span>HerWellness</span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="resources.html">Resources</a></li>
+      <li><a href="chatbot.html" class="active">Chatbot</a></li>
+      <li><a href="mood-tracker.html">Mood</a></li>
+      <li><a href="journal.html">Journal</a></li>
+      <li><a href="nutrition.html">Nutrition</a></li>
+      <li><a href="exercise.html">Exercise</a></li>
+      <li><a href="period-tracker.html">Cycle</a></li>
+    </ul>
+    <button class="menu-toggle" aria-label="Toggle menu">&#9776;</button>
+  </nav>
+</header>
+
+<main class="page-content">
+  <section class="section alt-bg">
+    <h2>AI Companion Chatbot</h2>
+    <p class="muted">Your personal support companion — vent, ask for tips, or just chat whenever you need.</p>
+
+    <div class="chatbot-box">
+      <div class="chat-window">
+        <ul class="messages" id="chatMessages">
+          <li class="bot-message">👋 Hello! How are you feeling today?</li>
+        </ul>
+        <form id="chatForm" class="chat-input">
+          <input type="text" id="userInput" placeholder="Type your message..." autocomplete="off" required />
+          <button type="submit">Send</button>
+        </form>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <p>&copy; 2025 HerWellness | Made with ❤️ at Hackathon</p>
+</footer>
+
+<script>
+// Toggle mobile menu
+const menuToggle = document.querySelector('.menu-toggle');
+const navLinks = document.querySelector('.nav-links');
+menuToggle.addEventListener('click', () => { navLinks.classList.toggle('active'); });
+
+// Chat functionality (replace OPENAI_API_KEY with real key)
+const chatForm = document.getElementById('chatForm');
+const userInput = document.getElementById('userInput');
+const chatMessages = document.getElementById('chatMessages');
+
+const OPENAI_API_KEY = 'YOUR_OPENAI_KEY_HERE'; // Replace with real key
+
+async function getBotResponse(message) {
+  try {
+    const response = await fetch('https://api.openai.com/v1/chat/completions', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${OPENAI_API_KEY}`
+      },
+      body: JSON.stringify({
+        model: "gpt-3.5-turbo",
+        messages: [{ role: "user", content: message }],
+        max_tokens: 200
+      })
+    });
+    const data = await response.json();
+    return data.choices[0].message.content;
+  } catch (error) {
+    return "😓 Sorry, something went wrong. Try again later.";
+  }
+}
+
+chatForm.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const message = userInput.value.trim();
+  if(!message) return;
+
+  // User message
+  const userMsg = document.createElement('li');
+  userMsg.classList.add('user-message');
+  userMsg.textContent = message;
+  chatMessages.appendChild(userMsg);
+  userInput.value = '';
+  chatMessages.scrollTop = chatMessages.scrollHeight;
+  
+  // Typing indicator
+  const typingMsg = document.createElement('li');
+  typingMsg.classList.add('bot-message', 'typing');
+  typingMsg.textContent = '';
+  chatMessages.appendChild(typingMsg);
+  chatMessages.scrollTop = chatMessages.scrollHeight;
+
+  // Get AI response
+  const botReply = await getBotResponse(message);
+  typingMsg.remove();
+
+  const botMsg = document.createElement('li');
+  botMsg.classList.add('bot-message');
+  botMsg.textContent = botReply;
+  chatMessages.appendChild(botMsg);
+  chatMessages.scrollTop = chatMessages.scrollHeight;
+});
+
+</script>
+</body>
+</html>

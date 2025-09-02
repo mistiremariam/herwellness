@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Resources | HerWellness</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../styles/main.css" />
+<style>
+
+/* ================= MAIN CONTENT ================= */
+.page-content {
+  padding: 2rem;
+}
+.section {
+  max-width: 1000px;
+  margin: 2rem auto;
+}
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+.card {
+  background: #fff;
+  padding: 1.5rem;
+  border-radius: 1.5rem;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+}
+.card h3 {
+  color: #6d28d9;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.card ul {
+  list-style: none;
+  padding-left: 0;
+}
+.card ul li {
+  margin-bottom: 0.8rem;
+  padding-left: 1rem;
+  position: relative;
+}
+.card ul li::before {
+  content: '•';
+  position: absolute;
+  left: 0;
+  color: #6d28d9;
+  font-weight: bold;
+}
+.card a {
+  color: #6d28d9;
+  text-decoration: none;
+  font-weight: 600;
+}
+.card a:hover {
+  text-decoration: underline;
+}
+
+/* ================= FOOTER ================= */
+.site-footer {
+  background: #fff;
+  padding: 2rem;
+  text-align: center;
+  box-shadow: 0 -6px 20px rgba(0,0,0,0.05);
+  margin-top: 2rem;
+}
+.site-footer ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+.site-footer ul li img {
+  width: 24px;
+  height: 24px;
+}
+
+/* ================= RESPONSIVE ================= */
+@media (max-width:768px) {
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    gap: 1rem;
+    background: #fff;
+    position: absolute;
+    top: 100%;
+    right: 2rem;
+    padding: 1rem 2rem;
+    border-radius: 1rem;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  }
+  .nav-links.active {
+    display: flex;
+  }
+  .menu-toggle {
+    display: block;
+  }
+}
+</style>
+</head>
+<body>
+<header class="main-header">
+  <nav class="navbar">
+    <div class="logo">
+      <img src="../assets/Copilot_20250902_104841.png" alt="HerWellness Logo">
+      <span>HerWellness</span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="resources.html" class="active">Resources</a></li>
+      <li><a href="chatbot.html">Chatbot</a></li>
+      <li><a href="mood-tracker.html">Mood</a></li>
+      <li><a href="journal.html">Journal</a></li>
+      <li><a href="nutrition.html">Nutrition</a></li>
+      <li><a href="exercise.html">Exercise</a></li>
+      <li><a href="period-tracker.html">Cycle</a></li>
+    </ul>
+    <button class="menu-toggle" aria-label="Toggle menu">&#9776;</button>
+  </nav>
+</header>
+
+<main class="page-content">
+  <section class="section">
+    <h2>Support & Emergency Resources</h2>
+    <p class="muted">Access trusted contacts and organizations for mental health, wellness, and emergency support.</p>
+
+    <div class="cards-grid">
+      <div class="card">
+        <h3>🧠 Mental Health Helplines</h3>
+        <ul>
+          <li><strong>National Mental Health Hotline:</strong> 123-456-7890</li>
+          <li><strong>Suicide Prevention:</strong> 800-273-8255</li>
+          <li><strong>Women's Support Line:</strong> 555-123-4567</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3>🌿 Wellness & Support Organizations</h3>
+        <ul>
+          <li><a href="https://www.mentalhealth.org/" target="_blank" rel="noopener">Mental Health Foundation</a></li>
+          <li><a href="https://www.who.int/health-topics/mental-health" target="_blank" rel="noopener">WHO Mental Health</a></li>
+          <li><a href="https://www.women.org/" target="_blank" rel="noopener">Global Women's Support</a></li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3> Emergency Contacts</h3>
+        <ul>
+          <li><strong>Police:</strong> 911</li>
+          <li><strong>Ambulance:</strong> 912</li>
+          <li><strong>Fire Department:</strong> 913</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <p>&copy; 2025 HerWellness</p>
+  <ul class="social-links">
+    <li><a href="#"><img src="../assets/X.png" alt="X"></a></li>
+    <li><a href="#"><img src="../assets/INSTAGRAM.png" alt="Instagram"></a></li>
+    <li><a href="#"><img src="../assets/GITHUB.png" alt="GitHub"></a></li>
+  </ul>
+</footer>
+
+<script>
+const menuToggle = document.querySelector('.menu-toggle');
+const navLinks = document.querySelector('.nav-links');
+menuToggle.addEventListener('click', () => { navLinks.classList.toggle('active'); });
+</script>
+</body>
+</html>

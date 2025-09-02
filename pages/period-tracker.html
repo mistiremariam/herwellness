@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HerWellness | Period Tracker</title>
+  <link rel="stylesheet" href="../styles/main.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- HEADER -->
+  <header class="main-header">
+    <nav class="navbar">
+      <div class="logo">
+        <img src="../assets/Copilot_20250902_104841.png" alt="HerWellness Logo">
+        <span>HerWellness</span>
+      </div>
+      <ul class="nav-links">
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="resources.html">Resources</a></li>
+        <li><a href="chatbot.html">Chatbot</a></li>
+        <li><a href="mood-tracker.html">Mood</a></li>
+        <li><a href="journal.html">Journal</a></li>
+        <li><a href="nutrition.html">Nutrition</a></li>
+        <li><a href="exercise.html">Exercise</a></li>
+        <li><a href="period-tracker.html" class="active">Cycle</a></li>
+      </ul>
+      <button class="menu-toggle" aria-label="Toggle menu">&#9776;</button>
+    </nav>
+  </header>
+
+  <!-- MAIN CONTENT -->
+  <main class="section">
+    <h2>Period & Cycle Tracker</h2>
+    <p>Track your cycle, predict upcoming periods, and gain insights into your health and wellness.</p>
+
+    <div class="tracker-box">
+      <form class="tracker-form">
+        <label for="lastPeriod">Last Period Start Date:</label>
+        <input type="date" id="lastPeriod" name="lastPeriod" required>
+
+        <label for="cycleLength">Average Cycle Length (days):</label>
+        <input type="number" id="cycleLength" name="cycleLength" min="20" max="40" value="28" required>
+
+        <button type="button" id="predictBtn" class="cta-btn">Predict Next Cycle</button>
+      </form>
+
+      <div id="predictionResult" class="result-box">
+        <h3>Prediction</h3>
+        <p>Enter your details above to see your next cycle dates.</p>
+      </div>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <p>&copy; 2025 HerWellness | Made with ❤️ at Hackathon</p>
+  </footer>
+
+  <script src="../scripts/app.js"></script>
+  <script>
+    // Simple cycle prediction logic
+    document.getElementById("predictBtn").addEventListener("click", () => {
+      const lastPeriod = document.getElementById("lastPeriod").value;
+      const cycleLength = parseInt(document.getElementById("cycleLength").value);
+      const resultBox = document.getElementById("predictionResult");
+
+      if (!lastPeriod || isNaN(cycleLength)) {
+        resultBox.innerHTML = "<p style='color:red;'>⚠ Please enter all required details.</p>";
+        return;
+      }
+
+      const lastDate = new Date(lastPeriod);
+      const nextPeriod = new Date(lastDate);
+      nextPeriod.setDate(nextPeriod.getDate() + cycleLength);
+
+      resultBox.innerHTML = `
+        <h3>Prediction</h3>
+        <p>📅 Your next period is likely to start on <strong>${nextPeriod.toDateString()}</strong>.</p>
+        <p>⚠ Note: This is an estimate. For accurate health tracking, consult a doctor or use medical-grade tools.</p>
+      `;
+    });
+    // Toggle mobile menu
+    const menuToggle = document.querySelector('.menu-toggle');
+    const navLinks = document.querySelector('.nav-links');
+
+    menuToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+    });
+  </script>
+</body>
+</html>

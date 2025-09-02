@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nutrition | HerWellness</title>
+  <link rel="stylesheet" href="../styles/main.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- ================= HEADER / NAVBAR ================= -->
+  <header class="main-header">
+    <nav class="navbar">
+      <div class="logo">
+        <img src="../assets/Copilot_20250902_104841.png" alt="HerWellness Logo">
+        <span>HerWellness</span>
+      </div>
+      <ul class="nav-links">
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="resources.html">Resources</a></li>
+        <li><a href="chatbot.html">Chatbot</a></li>
+        <li><a href="mood-tracker.html">Mood</a></li>
+        <li><a href="journal.html">Journal</a></li>
+        <li><a href="nutrition.html" class="active">Nutrition</a></li>
+        <li><a href="exercise.html">Exercise</a></li>
+        <li><a href="period-tracker.html">Cycle</a></li>
+      </ul>
+      <button class="menu-toggle" aria-label="Toggle menu">&#9776;</button>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="nutrition-hero">
+      <h1>Fuel Your Body, Empower Your Mind</h1>
+      <p>Discover healthy meals, track your nutrition, and nourish yourself every day.</p>
+      <a href="#meal-tracker" class="cta-btn">Start Tracking</a>
+    </section>
+  </header>
+
+  <!-- ================= RECOMMENDED MEALS ================= -->
+  <section class="meal-cards section">
+    <h2 class="section-title">Recommended Meals</h2>
+    <div class="meal-cards">
+      <div class="meal-card">
+       
+        <h3>Healthy Breakfast</h3>
+        <p>Oatmeal with fruits and nuts to energize your morning.</p>
+      </div>
+      <div class="meal-card">
+       
+        <h3>Balanced Lunch</h3>
+        <p>Grilled chicken, quinoa, and fresh vegetables for sustained energy.</p>
+      </div>
+      <div class="meal-card">
+       
+        <h3>Light Dinner</h3>
+        <p>Salmon, leafy greens, and a side of brown rice for a wholesome evening.</p>
+      </div>
+      <div class="meal-card">
+        
+        <h3>Smart Snacks</h3>
+        <p>Fruit, yogurt, or nuts to keep cravings healthy and satisfying.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= DAILY MEAL TRACKER ================= -->
+  <section class="meal-tracker section" id="meal-tracker">
+    <h2>Track Your Daily Meals</h2>
+    <form id="mealForm">
+      <label for="mealName">Meal Name</label>
+      <input type="text" id="mealName" placeholder="e.g., Breakfast - Oatmeal" required>
+
+      <label for="mealCalories">Calories (kcal)</label>
+      <input type="number" id="mealCalories" placeholder="e.g., 350" required>
+
+      <label for="mealNotes">Notes / Ingredients</label>
+      <textarea id="mealNotes" placeholder="Optional details..."></textarea>
+
+      <button type="submit" class="btn">Add Meal</button>
+    </form>
+
+    <ul class="logged-meals" id="loggedMeals">
+      <!-- Meals will be dynamically added here -->
+    </ul>
+  </section>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="site-footer">
+    <p>&copy; 2025 HerWellness | Nourish with Love 💜</p>
+    
+  </footer>
+
+  <!-- ================= JAVASCRIPT ================= -->
+  <script>
+    const mealForm = document.getElementById('mealForm');
+    const loggedMeals = document.getElementById('loggedMeals');
+
+    mealForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const name = document.getElementById('mealName').value.trim();
+      const calories = document.getElementById('mealCalories').value.trim();
+      const notes = document.getElementById('mealNotes').value.trim();
+
+      if(name && calories) {
+        const li = document.createElement('li');
+        li.textContent = `${name} - ${calories} kcal ${notes ? "| " + notes : ""}`;
+        loggedMeals.prepend(li);
+        mealForm.reset();
+      }
+    });
+     // Toggle mobile menu
+    const menuToggle = document.querySelector('.menu-toggle');
+    const navLinks = document.querySelector('.nav-links');
+
+    menuToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mood Tracker | HerWellness</title>
+  <link rel="stylesheet" href="../styles/main.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background: linear-gradient(135deg, #fdf6fb, #e0f7fa);
+      font-family: 'Poppins', sans-serif;
+      color: #1e293b;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    .page-content {
+      flex: 1;
+      max-width: 900px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
+
+    h1.section-title {
+      text-align: center;
+      font-size: 2.4rem;
+      margin-bottom: 0.5rem;
+      background: linear-gradient(90deg, #6d28d9, #f472b6);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .muted {
+      text-align: center;
+      color: #64748b;
+      margin-bottom: 2rem;
+    }
+
+    .card {
+      background: #fff;
+      padding: 2rem;
+      border-radius: 2rem;
+      box-shadow: 0 12px 25px rgba(0,0,0,0.08);
+      text-align: center;
+      margin-bottom: 2rem;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 16px 35px rgba(0,0,0,0.12);
+    }
+
+    .mood-options {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .mood-btn {
+      padding: 1rem 1.5rem;
+      border: none;
+      border-radius: 2rem;
+      font-size: 1.1rem;
+      cursor: pointer;
+      background: linear-gradient(135deg, #f472b6, #6d28d9);
+      color: #fff;
+      transition: transform 0.2s ease, box-shadow 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .mood-btn:hover {
+      transform: translateY(-3px) scale(1.05);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    }
+
+    #mood-feedback {
+      margin-top: 1.5rem;
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #6d28d9;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+
+    .mood-history {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+
+    .mood-entry {
+      background: #fef6fb;
+      padding: 1rem;
+      border-radius: 1.5rem;
+      font-size: 0.95rem;
+      text-align: center;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      position: relative;
+      animation: fadeInUp 0.5s ease;
+    }
+
+    .mood-entry::before {
+      content: "🗓️";
+      position: absolute;
+      left: 0.8rem;
+      top: 0.8rem;
+      font-size: 1rem;
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+  <!-- ================= HEADER / NAVBAR ================= -->
+  <header class="main-header">
+    <nav class="navbar">
+      <div class="logo">
+        <img src="../assets/Copilot_20250902_104841.png" alt="HerWellness Logo">
+        <span>HerWellness</span>
+      </div>
+      <ul class="nav-links">
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="resources.html">Resources</a></li>
+        <li><a href="chatbot.html">Chatbot</a></li>
+        <li><a href="mood-tracker.html" class="active">Mood</a></li>
+        <li><a href="journal.html">Journal</a></li>
+        <li><a href="nutrition.html">Nutrition</a></li>
+        <li><a href="exercise.html">Exercise</a></li>
+        <li><a href="period-tracker.html">Cycle</a></li>
+      </ul>
+      <button class="menu-toggle" aria-label="Toggle menu">&#9776;</button>
+    </nav>
+  </header>
+
+  <!-- ================= MAIN CONTENT ================= -->
+  <main class="page-content">
+    <section class="feature-section">
+      <h1 class="section-title">Mood Tracker</h1>
+      <p class="muted">Reflect on how you feel and track your emotional well-being over time.</p>
+
+      <div class="card">
+        <h2>How are you feeling today?</h2>
+        <div class="mood-options">
+          <button class="mood-btn">😊 Happy</button>
+          <button class="mood-btn">😐 Neutral</button>
+          <button class="mood-btn">😔 Sad</button>
+          <button class="mood-btn">😡 Angry</button>
+          <button class="mood-btn">😴 Tired</button>
+        </div>
+        <div id="mood-feedback">You selected: </div>
+      </div>
+
+      <div class="card">
+        <h2>Your Mood History</h2>
+        <div class="mood-history" id="moodHistory">
+          <!-- Mood entries will appear here -->
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="footer">
+    <p>&copy; 2025 HerWellness | Made with ❤️ at Hackathon</p>
+    <ul class="social-links">
+      <li><a href="#"><img src="../assets/images/twitter-icon.png" alt="Twitter"></a></li>
+      <li><a href="#"><img src="../assets/images/instagram-icon.png" alt="Instagram"></a></li>
+      <li><a href="#"><img src="../assets/images/github-icon.png" alt="GitHub"></a></li>
+    </ul>
+  </footer>
+
+  <script>
+    const moodBtns = document.querySelectorAll('.mood-btn');
+    const feedback = document.getElementById('mood-feedback');
+    const history = document.getElementById('moodHistory');
+
+    moodBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const mood = btn.textContent;
+        feedback.textContent = `You selected: ${mood}`;
+        feedback.style.opacity = 1;
+
+        const entry = document.createElement('div');
+        entry.classList.add('mood-entry');
+        const date = new Date().toLocaleDateString();
+        entry.textContent = `${date} - ${mood}`;
+        history.prepend(entry);
+      });
+    });
+    
+    // Toggle mobile menu
+    const menuToggle = document.querySelector('.menu-toggle');
+    const navLinks = document.querySelector('.nav-links');
+
+    menuToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+    });
+  </script>
+</body>
+</html>

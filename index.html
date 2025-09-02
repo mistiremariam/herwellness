@@ -1,136 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HerWellness AI</title>
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
-    <!-- Font Awesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <!-- Main CSS -->
-    <link rel="stylesheet" href="style/main.css">
-    <link rel="stylesheet" href="style/components.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HerWellness | Your Safe Space</title>
+  <link rel="stylesheet" href="styles/main.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  
 </head>
 <body>
-    <!-- Navbar -->
-    <header class="navbar">
-        <div class="container navbar-container">
-            <a href="#" class="logo">HerWellness <span>AI</span></a>
-            <nav class="nav-links">
-                <a href="#dashboard">Dashboard</a>
-                <a href="#journal">Journal</a>
-                <a href="#exercise">Exercise</a>
-                <a href="#nutrition">Nutrition</a>
-                <a href="#chatbot">AI Companion</a>
-            </nav>
-            <button class="btn btn-primary">Sign Up</button>
-        </div>
-    </header>
+  <!-- ================= HEADER / NAVBAR ================= -->
+  <header class="main-header">
+    <nav class="navbar">
+      <div class="logo">
+        <img src="assets/Copilot_20250902_104841.png" alt="HerWellness Logo">
+        <span>HerWellness</span>
+      </div>
+      <ul class="nav-links">
+        <li><a href="pages/resources.html">Resources</a></li>
+        <li><a href="pages/chatbot.html">Chatbot</a></li>
+        <li><a href="pages/mood-tracker.html">Mood</a></li>
+        <li><a href="pages/journal.html">Journal</a></li>
+        <li><a href="pages/nutrition.html">Nutrition</a></li>
+        <li><a href="pages/exercise.html">Exercise</a></li>
+        <li><a href="pages/period-tracker.html">Cycle</a></li>
+      </ul>
+      <button class="menu-toggle" aria-label="Toggle menu">&#9776;</button>
+    </nav>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="container hero-content">
-            <h1>Empower Your Mind & Body</h1>
-            <p>Personalized wellness journey tailored for women: journaling, exercise, nutrition planning, and your AI health companion.</p>
-            <a href="#dashboard" class="btn btn-hero">Get Started</a>
-        </div>
-        <div class="hero-image">
-            <img src="assets/images/hero-girl.png" alt="Wellness Illustration">
-        </div>
-    </section>
+    <!-- HERO SECTION -->
+    <div class="hero">
+      <h1>Your Safe Space for <span class="highlight">Wellness</span></h1>
+      <p>Track your mood, nourish your body, move freely, and find support — all in one empowering platform.</p>
+      <a href="pages/mood-tracker.html" class="cta-btn">Start Your Journey</a>
+    </div>
+  </header>
 
-    <!-- Dashboard Preview -->
-    <section id="dashboard" class="dashboard-section">
-        <div class="container section-header">
-            <h2>Dashboard Overview</h2>
-            <p>Track your wellness journey effortlessly with a clean, intuitive dashboard.</p>
-        </div>
-        <div class="cards-container">
-            <div class="card">
-                <i class="fas fa-book-open card-icon"></i>
-                <h3>Journal</h3>
-                <p>Reflect on your day and track your mental health progress.</p>
-            </div>
-            <div class="card">
-                <i class="fas fa-dumbbell card-icon"></i>
-                <h3>Exercise</h3>
-                <p>Personalized workout plans to stay fit and energized.</p>
-            </div>
-            <div class="card">
-                <i class="fas fa-apple-alt card-icon"></i>
-                <h3>Nutrition</h3>
-                <p>Plan meals, track calories, and maintain a healthy lifestyle.</p>
-            </div>
-            <div class="card">
-                <i class="fas fa-robot card-icon"></i>
-                <h3>AI Companion</h3>
-                <p>Your personal AI assistant for health tips and daily motivation.</p>
-            </div>
-        </div>
-    </section>
+  <!-- ====== FEATURE CARDS ====== -->
+  
 
-    <!-- Journal Section -->
-    <section id="journal" class="journal-section">
-        <div class="container section-header">
-            <h2>Journal Your Thoughts</h2>
-            <p>Daily prompts and mood tracking to empower your mental health.</p>
-        </div>
-        <div id="journal-app" class="component-placeholder">
-            <!-- journal.js will dynamically load content here -->
-        </div>
-    </section>
+  <!-- ================= FOOTER ================= -->
+  <footer class="footer">
+    <p>&copy; 2025 HerWellness</p>
+    
+  </footer>
 
-    <!-- Exercise Section -->
-    <section id="exercise" class="exercise-section">
-        <div class="container section-header">
-            <h2>Exercise Plans</h2>
-            <p>Workouts tailored for your goals and lifestyle.</p>
-        </div>
-        <div id="exercise-app" class="component-placeholder">
-            <!-- exercise.js will dynamically load content here -->
-        </div>
-    </section>
+  <script>
+    // Toggle mobile menu
+    const menuToggle = document.querySelector('.menu-toggle');
+    const navLinks = document.querySelector('.nav-links');
 
-    <!-- Nutrition Section -->
-    <section id="nutrition" class="nutrition-section">
-        <div class="container section-header">
-            <h2>Nutrition Tracker</h2>
-            <p>Plan meals and track your calories with ease.</p>
-        </div>
-        <div id="nutrition-app" class="component-placeholder">
-            <!-- nutrition.js will dynamically load content here -->
-        </div>
-    </section>
-
-    <!-- ChatBot Section -->
-    <section id="chatbot" class="chatbot-section">
-        <div class="container section-header">
-            <h2>AI Health Companion</h2>
-            <p>Ask questions, get tips, and stay motivated with your AI friend.</p>
-        </div>
-        <div id="chatbot-app" class="component-placeholder">
-            <!-- chatbot.js will dynamically load content here -->
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container footer-container">
-            <p>&copy; 2025 HerWellness AI. All rights reserved.</p>
-            <div class="social-links">
-                <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
-                <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
-                <a href="#" title="Facebook"><i class="fab fa-facebook"></i></a>
-            </div>
-        </div>
-    </footer>
-
-    <!-- JS Scripts -->
-    <script src="js/main.js"></script>
-    <script src="js/journal.js"></script>
-    <script src="js/exercise.js"></script>
-    <script src="js/nutrition.js"></script>
-    <script src="js/chatbot.js"></script>
+    menuToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+    });
+  </script>
 </body>
 </html>

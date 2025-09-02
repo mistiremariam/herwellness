@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Journal | HerWellness</title>
+  <link rel="stylesheet" href="../styles/main.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background: linear-gradient(135deg, #fdf6fb, #e0f7fa);
+      font-family: 'Poppins', sans-serif;
+      color: #1e293b;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    .page-content {
+      flex: 1;
+      max-width: 900px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
+
+    h2 {
+      text-align: center;
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+      color: #6d28d9;
+    }
+
+    .muted {
+      text-align: center;
+      color: #64748b;
+      margin-bottom: 2rem;
+    }
+
+    /* Journal Card */
+    .journal-card {
+      background: #fff;
+      border-radius: 2rem;
+      padding: 2rem;
+      box-shadow: 0 12px 25px rgba(0,0,0,0.08);
+      margin-bottom: 2rem;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .journal-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 16px 35px rgba(0,0,0,0.12);
+    }
+
+    textarea {
+      width: 100%;
+      padding: 1rem;
+      border-radius: 1.5rem;
+      border: 1px solid #ddd;
+      font-size: 1rem;
+      min-height: 120px;
+      resize: vertical;
+      transition: border 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    textarea:focus {
+      border-color: #6d28d9;
+      box-shadow: 0 0 10px rgba(109, 40, 217, 0.2);
+      outline: none;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 0.8rem 1.5rem;
+      border: none;
+      border-radius: 2rem;
+      background: linear-gradient(135deg, #6d28d9, #f472b6);
+      color: #fff;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.3s ease;
+      margin-top: 1rem;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    }
+
+    /* Entries List */
+    .entries-list {
+      list-style: none;
+      padding: 0;
+    }
+
+    .entries-list li {
+      background: #fef6fb;
+      border-left: 5px solid #6d28d9;
+      padding: 1rem;
+      border-radius: 1rem;
+      margin-bottom: 1rem;
+      font-size: 1rem;
+      animation: fadeInUp 0.5s ease;
+      position: relative;
+    }
+
+    .entries-list li::before {
+      content: "📝";
+      position: absolute;
+      left: -2rem;
+      top: 0.8rem;
+      font-size: 1.2rem;
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Prompt suggestions */
+    .prompts {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      margin-bottom: 1rem;
+    }
+
+    .prompt {
+      background: linear-gradient(135deg, #f472b6, #6d28d9);
+      color: #fff;
+      padding: 0.5rem 1rem;
+      border-radius: 2rem;
+      cursor: pointer;
+      font-size: 0.9rem;
+      transition: transform 0.2s ease, opacity 0.2s ease;
+    }
+
+    .prompt:hover {
+      transform: scale(1.05);
+      opacity: 0.9;
+    }
+
+    /* Responsive */
+    @media (max-width:768px) {
+      h2 { font-size: 1.6rem; }
+      textarea { min-height: 100px; }
+    }
+  </style>
+</head>
+<body>
+  <!-- ================= HEADER / NAVBAR ================= -->
+  <header class="main-header">
+    <nav class="navbar">
+      <div class="logo">
+        <img src="../assets/Copilot_20250902_104841.png" alt="HerWellness Logo">
+        <span>HerWellness</span>
+      </div>
+      <ul class="nav-links">
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="resources.html">Resources</a></li>
+        <li><a href="chatbot.html">Chatbot</a></li>
+        <li><a href="mood-tracker.html">Mood</a></li>
+        <li><a href="journal.html" class="active">Journal</a></li>
+        <li><a href="nutrition.html">Nutrition</a></li>
+        <li><a href="exercise.html">Exercise</a></li>
+        <li><a href="period-tracker.html">Cycle</a></li>
+      </ul>
+      <button class="menu-toggle" aria-label="Toggle menu">&#9776;</button>
+    </nav>
+  </header>
+
+  <!-- ================= MAIN CONTENT ================= -->
+  <main class="page-content">
+    <section class="section">
+      <h2>Daily Journal</h2>
+      <p class="muted">Write down your thoughts, reflections, or anything you want to track emotionally or mentally.</p>
+
+      <!-- Prompt Suggestions -->
+      <div class="journal-card">
+        <div class="prompts">
+          <div class="prompt" onclick="usePrompt('Today I feel...')">Today I feel...</div>
+          <div class="prompt" onclick="usePrompt('I am grateful for...')">I am grateful for...</div>
+          <div class="prompt" onclick="usePrompt('One thing I learned today...')">One thing I learned today...</div>
+          <div class="prompt" onclick="usePrompt('Something I want to improve...')">Something I want to improve...</div>
+        </div>
+
+        <!-- Journal Form -->
+        <form class="journal-form" id="journalForm">
+          <textarea id="journalEntry" placeholder="Start writing your entry..." required></textarea>
+          <button type="submit" class="btn">Add Entry</button>
+        </form>
+      </div>
+
+      <!-- Entries List -->
+      <div class="journal-card">
+        <h3>Your Entries</h3>
+        <ul class="entries-list" id="entriesList">
+          <!-- Entries will be added dynamically -->
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="site-footer">
+    <p>&copy; 2025 HerWellness | Made with ❤️ at Hackathon</p>
+    <ul class="social-links">
+      <li><a href="#"><img src="../assets/images/twitter-icon.png" alt="Twitter"></a></li>
+      <li><a href="#"><img src="../assets/images/instagram-icon.png" alt="Instagram"></a></li>
+      <li><a href="#"><img src="../assets/images/github-icon.png" alt="GitHub"></a></li>
+    </ul>
+  </footer>
+
+  <script>
+    const form = document.getElementById('journalForm');
+    const entriesList = document.getElementById('entriesList');
+    const textarea = document.getElementById('journalEntry');
+
+    // Add journal entry
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const entryText = textarea.value.trim();
+      if(entryText !== '') {
+        const li = document.createElement('li');
+        li.textContent = entryText;
+        entriesList.prepend(li);
+        textarea.value = '';
+      }
+    });
+
+    // Use a prompt suggestion
+    function usePrompt(text) {
+      textarea.value = text + " ";
+      textarea.focus();
+    }
+      
+    // Toggle mobile menu
+    const menuToggle = document.querySelector('.menu-toggle');
+    const navLinks = document.querySelector('.nav-links');
+
+    menuToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+    });
+  </script>
+</body>
+</html>

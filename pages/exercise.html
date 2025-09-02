@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Exercise & Fitness | HerWellness</title>
+  <link rel="stylesheet" href="../styles/main.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- ================= HEADER / NAVBAR ================= -->
+  <header class="main-header">
+    <nav class="navbar">
+      <div class="logo">
+        <img src="../assets/Copilot_20250902_104841.png" alt="HerWellness Logo">
+        <span>HerWellness</span>
+      </div>
+      <ul class="nav-links">
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="resources.html">Resources</a></li>
+        <li><a href="chatbot.html">Chatbot</a></li>
+        <li><a href="mood-tracker.html">Mood</a></li>
+        <li><a href="journal.html">Journal</a></li>
+        <li><a href="nutrition.html">Nutrition</a></li>
+        <li><a href="exercise.html" class="active">Exercise</a></li>
+        <li><a href="period-tracker.html">Cycle</a></li>
+      </ul>
+      <button class="menu-toggle" aria-label="Toggle menu">&#9776;</button>
+    </nav>
+  </header>
+
+  <!-- ================= HERO SECTION ================= -->
+  <section class="hero">
+    <h1>Move Your Body, Empower Your Mind</h1>
+    <p>Gentle workouts, fun exercises, and mindful movement designed just for you.</p>
+  </section>
+
+  <!-- ================= EXERCISE PLANS ================= -->
+  <section class="exercise-plans section">
+    <h2 class="section-title">Daily Movement Plans</h2>
+    <div class="card-grid">
+      <div class="card" data-duration="300">
+        <h3>Morning Energizer</h3>
+        <p>5-minute stretching and light cardio to kickstart your day.</p>
+        <button class="btn start-btn">Start Now</button>
+      </div>
+      <div class="card" data-duration="600">
+        <h3>Midday Reset</h3>
+        <p>10-minute yoga flow to refresh and recharge between tasks.</p>
+        <button class="btn start-btn">Start Now</button>
+      </div>
+      <div class="card" data-duration="900">
+        <h3>Evening Wind-down</h3>
+        <p>15-minute gentle mobility and breathing exercises for better sleep.</p>
+        <button class="btn start-btn">Start Now</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= TIMER MODAL ================= -->
+  <div class="modal" id="timerModal">
+    <div class="modal-content">
+      <h3 id="modalTitle">Exercise Timer</h3>
+      <div class="timer-display">
+        <span id="minutes">00</span>:<span id="seconds">00</span>
+      </div>
+      <div class="progress-bar">
+        <div class="progress" id="progressBar"></div>
+      </div>
+      <button class="btn" id="stopTimer">Stop</button>
+    </div>
+  </div>
+
+  <!-- ================= ACTIVITY TRACKER ================= -->
+  <section class="activity-tracker section">
+    <h2 class="section-title">Track Your Activity</h2>
+    <div class="tracker-box">
+      <input type="text" id="activity" placeholder="Activity (e.g., 20 min yoga)" />
+      <input type="number" id="duration" placeholder="Duration (minutes)" />
+      <button class="btn" id="logBtn">Log Activity</button>
+    </div>
+    <div class="log-summary">
+      <h3>Today’s Activity</h3>
+      <ul id="exercise-log" class="log-list"></ul>
+      <p id="totalMinutes">Total Minutes: 0</p>
+    </div>
+  </section>
+
+  <!-- ================= MOTIVATIONAL QUOTES ================= -->
+  <section class="quote-section section">
+    <h2 class="section-title">Motivational Quote</h2>
+    <blockquote id="exercise-quote">💪 Your body can stand almost anything. It’s your mind you have to convince.</blockquote>
+    <button class="btn" id="newQuoteBtn">Get New Quote</button>
+  </section>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="site-footer">
+    <p>&copy; 2025 HerWellness | Move with love 💕</p>
+  </footer>
+
+  <!-- ================= SCRIPTS ================= -->
+  <script>
+  // ================= EXERCISE TIMER =================
+const startBtns = document.querySelectorAll('.start-btn');
+const timerModal = document.getElementById('timerModal');
+const modalTitle = document.getElementById('modalTitle');
+const minutesEl = document.getElementById('minutes');
+const secondsEl = document.getElementById('seconds');
+const progressBar = document.getElementById('progressBar');
+const stopTimerBtn = document.getElementById('stopTimer');
+
+let timerInterval;
+let totalTime = 0;
+let remainingTime = 0;
+
+startBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    const card = btn.closest('.card');
+    const duration = parseInt(card.dataset.duration); // duration in seconds
+    startTimer(card.querySelector('h3').textContent, duration);
+  });
+});
+
+function startTimer(title, duration) {
+  clearInterval(timerInterval);
+  totalTime = duration;
+  remainingTime = duration;
+  modalTitle.textContent = title;
+  updateTimerDisplay();
+  timerModal.style.display = 'flex';
+  
+  timerInterval = setInterval(() => {
+    remainingTime--;
+    if (remainingTime < 0) {
+      clearInterval(timerInterval);
+      alert(`${title} Completed! 🎉`);
+      timerModal.style.display = 'none';
+      progressBar.style.width = '0%';
+    } else {
+      updateTimerDisplay();
+    }
+  }, 1000);
+}
+
+function updateTimerDisplay() {
+  const mins = Math.floor(remainingTime / 60);
+  const secs = remainingTime % 60;
+  minutesEl.textContent = mins.toString().padStart(2, '0');
+  secondsEl.textContent = secs.toString().padStart(2, '0');
+  const progressPercent = ((totalTime - remainingTime) / totalTime) * 100;
+  progressBar.style.width = `${progressPercent}%`;
+}
+
+stopTimerBtn.addEventListener('click', () => {
+  clearInterval(timerInterval);
+  timerModal.style.display = 'none';
+  progressBar.style.width = '0%';
+});
+
+// ================= ACTIVITY TRACKER =================
+const logBtn = document.getElementById('logBtn');
+const activityInput = document.getElementById('activity');
+const durationInput = document.getElementById('duration');
+const logList = document.getElementById('exercise-log');
+const totalMinutesEl = document.getElementById('totalMinutes');
+let totalMinutes = 0;
+
+logBtn.addEventListener('click', () => {
+  const activity = activityInput.value.trim();
+  const duration = parseInt(durationInput.value);
+  if (!activity || isNaN(duration)) return alert("Please enter activity and duration!");
+
+  const li = document.createElement('li');
+  li.textContent = `${activity} — ${duration} min`;
+  logList.appendChild(li);
+
+  totalMinutes += duration;
+  totalMinutesEl.textContent = `Total Minutes: ${totalMinutes}`;
+
+  activityInput.value = '';
+  durationInput.value = '';
+});
+
+// ================= MOTIVATIONAL QUOTES =================
+const quotes = [
+  "💪 Push yourself, because no one else is going to do it for you.",
+  "🏋️‍♀️ Sweat is fat crying.",
+  "✨ Small steps every day lead to big results.",
+  "🔥 Your body can stand almost anything. It’s your mind you have to convince.",
+  "🌟 Consistency is more important than intensity.",
+  "🌈 Exercise not just for the body, but for your mind and soul.",
+  "⚡ Energy flows where attention goes. Move mindfully!"
+];
+
+const newQuoteBtn = document.getElementById('newQuoteBtn');
+const quoteEl = document.getElementById('exercise-quote');
+
+newQuoteBtn.addEventListener('click', () => {
+  const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
+  quoteEl.textContent = randomQuote;
+});
+
+// ================= MOBILE MENU TOGGLE =================
+const menuToggle = document.querySelector('.menu-toggle');
+const navLinks = document.querySelector('.nav-links');
+
+menuToggle.addEventListener('click', () => {
+  navLinks.classList.toggle('active');
+});
+
+  </script>
+
+  
+</body>
+</html>
